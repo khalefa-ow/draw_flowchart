@@ -1,0 +1,1155 @@
+{
+  "type": "Script",
+  "commands": [
+    {
+      "type": "If",
+      "clause": {
+        "type": "CompoundList",
+        "commands": [
+          {
+            "type": "Command",
+            "name": {
+              "text": "[",
+              "type": "Word"
+            },
+            "suffix": [
+              {
+                "text": "\"$1\"",
+                "expansion": [
+                  {
+                    "loc": {
+                      "start": 1,
+                      "end": 2
+                    },
+                    "parameter": 1,
+                    "type": "ParameterExpansion",
+                    "kind": "positional"
+                  }
+                ],
+                "type": "Word"
+              },
+              {
+                "text": "=",
+                "type": "Word"
+              },
+              {
+                "text": "--help",
+                "type": "Word"
+              },
+              {
+                "text": "]",
+                "type": "Word"
+              }
+            ]
+          }
+        ]
+      },
+      "then": {
+        "type": "CompoundList",
+        "commands": [
+          {
+            "type": "Command",
+            "name": {
+              "text": "echo",
+              "type": "Word"
+            },
+            "suffix": [
+              {
+                "text": "### Help for TERAD ###\n# Inputs are:\n# 1. A file to search for TE in fasta format\n# 2. The number of cores to use\n# 3. The custom library to search for TE\n# \n# Make sure your input file, TERAD, extract_cdhit2.R, and RAD_TE_summary.R in the same folder as well as your custom TE library in fasta format\n# \n# Test run:\n# ./TERAD test_file.fasta 4 ./arthro_ES_ND_PV_classified.fa none\n# or \n# ./TERAD test_file.fasta 4 none arthropods        \n\n\n# \n# See readme for installation instructions\n",
+                "type": "Word"
+              }
+            ]
+          },
+          {
+            "type": "Command",
+            "name": {
+              "text": "exit",
+              "type": "Word"
+            },
+            "suffix": [
+              {
+                "text": "0",
+                "type": "Word"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "echo",
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "\n\n########################################\n### Thanks for using TERAD\n########################################",
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "prefix": [
+        {
+          "text": "FILE=${1?Error: No filename given.\n\t\tSee \"--help\" for help!}",
+          "expansion": [
+            {
+              "loc": {
+                "start": 5,
+                "end": 59
+              },
+              "parameter": "1?Error: No filename given.\n\t\tSee \"--help\" for help!",
+              "type": "ParameterExpansion"
+            }
+          ],
+          "type": "AssignmentWord"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "prefix": [
+        {
+          "text": "CORE=${2?Error: No core given. \n\t\tSee \"--help\" for help!}",
+          "expansion": [
+            {
+              "loc": {
+                "start": -56,
+                "end": -2
+              },
+              "parameter": "1?Error: No filename given.\n\t\tSee \"--help\" for help!",
+              "type": "ParameterExpansion"
+            },
+            {
+              "loc": {
+                "start": 5,
+                "end": 56
+              },
+              "parameter": "2?Error: No core given. \n\t\tSee \"--help\" for help!",
+              "type": "ParameterExpansion"
+            }
+          ],
+          "type": "AssignmentWord"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "prefix": [
+        {
+          "text": "LIB=${3?Error: No TE library path given. \n\t\tEnter \"none\" if specifying species as the fourth parameter.\n\t\tSee \"--help\" for help!}",
+          "expansion": [
+            {
+              "loc": {
+                "start": -114,
+                "end": -60
+              },
+              "parameter": "1?Error: No filename given.\n\t\tSee \"--help\" for help!",
+              "type": "ParameterExpansion"
+            },
+            {
+              "loc": {
+                "start": -53,
+                "end": -2
+              },
+              "parameter": "2?Error: No core given. \n\t\tSee \"--help\" for help!",
+              "type": "ParameterExpansion"
+            },
+            {
+              "loc": {
+                "start": 4,
+                "end": 128
+              },
+              "parameter": "3?Error: No TE library path given. \n\t\tEnter \"none\" if specifying species as the fourth parameter.\n\t\tSee \"--help\" for help!",
+              "type": "ParameterExpansion"
+            }
+          ],
+          "type": "AssignmentWord"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "prefix": [
+        {
+          "text": "SP=${4?Error: No species given. \n\t\tEnter \"none\" if specifying custom TE library at the third parameter.\n\t\tSee \"--help\" for help!}",
+          "expansion": [
+            {
+              "loc": {
+                "start": -244,
+                "end": -190
+              },
+              "parameter": "1?Error: No filename given.\n\t\tSee \"--help\" for help!",
+              "type": "ParameterExpansion"
+            },
+            {
+              "loc": {
+                "start": -183,
+                "end": -132
+              },
+              "parameter": "2?Error: No core given. \n\t\tSee \"--help\" for help!",
+              "type": "ParameterExpansion"
+            },
+            {
+              "loc": {
+                "start": -126,
+                "end": -2
+              },
+              "parameter": "3?Error: No TE library path given. \n\t\tEnter \"none\" if specifying species as the fourth parameter.\n\t\tSee \"--help\" for help!",
+              "type": "ParameterExpansion"
+            },
+            {
+              "loc": {
+                "start": 3,
+                "end": 128
+              },
+              "parameter": "4?Error: No species given. \n\t\tEnter \"none\" if specifying custom TE library at the third parameter.\n\t\tSee \"--help\" for help!",
+              "type": "ParameterExpansion"
+            }
+          ],
+          "type": "AssignmentWord"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "echo",
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "\n\n########################################\n### Input parameters\n########################################\n",
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "echo",
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "\"1. File name: $1\"",
+          "expansion": [
+            {
+              "loc": {
+                "start": 15,
+                "end": 16
+              },
+              "parameter": 1,
+              "type": "ParameterExpansion",
+              "kind": "positional"
+            }
+          ],
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "echo",
+        "expansion": [
+          {
+            "loc": {
+              "start": -4,
+              "end": -3
+            },
+            "parameter": 1,
+            "type": "ParameterExpansion",
+            "kind": "positional"
+          }
+        ],
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "\"2. No. of cores: $2\"",
+          "expansion": [
+            {
+              "loc": {
+                "start": 18,
+                "end": 19
+              },
+              "parameter": 2,
+              "type": "ParameterExpansion",
+              "kind": "positional"
+            }
+          ],
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "echo",
+        "expansion": [
+          {
+            "loc": {
+              "start": -4,
+              "end": -3
+            },
+            "parameter": 2,
+            "type": "ParameterExpansion",
+            "kind": "positional"
+          }
+        ],
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "\"3. Path to TE database: $3\"",
+          "expansion": [
+            {
+              "loc": {
+                "start": 25,
+                "end": 26
+              },
+              "parameter": 3,
+              "type": "ParameterExpansion",
+              "kind": "positional"
+            }
+          ],
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "echo",
+        "expansion": [
+          {
+            "loc": {
+              "start": -4,
+              "end": -3
+            },
+            "parameter": 3,
+            "type": "ParameterExpansion",
+            "kind": "positional"
+          }
+        ],
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "\"4. TE query species: $4\"",
+          "expansion": [
+            {
+              "loc": {
+                "start": 22,
+                "end": 23
+              },
+              "parameter": 4,
+              "type": "ParameterExpansion",
+              "kind": "positional"
+            }
+          ],
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "echo",
+        "expansion": [
+          {
+            "loc": {
+              "start": -6,
+              "end": -5
+            },
+            "parameter": 4,
+            "type": "ParameterExpansion",
+            "kind": "positional"
+          }
+        ],
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "\n\n########################################\n### Step 1/5: Clustering with cd-hit \n########################################\n",
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "cd-hit-est",
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "-i",
+          "type": "Word"
+        },
+        {
+          "text": "$FILE",
+          "expansion": [
+            {
+              "loc": {
+                "start": 0,
+                "end": 4
+              },
+              "parameter": "FILE",
+              "type": "ParameterExpansion"
+            }
+          ],
+          "type": "Word"
+        },
+        {
+          "text": "-d",
+          "type": "Word"
+        },
+        {
+          "text": "0",
+          "type": "Word"
+        },
+        {
+          "text": "-o",
+          "type": "Word"
+        },
+        {
+          "text": "./\"$FILE\".cd",
+          "expansion": [
+            {
+              "loc": {
+                "start": 3,
+                "end": 7
+              },
+              "parameter": "FILE",
+              "type": "ParameterExpansion"
+            }
+          ],
+          "type": "Word"
+        },
+        {
+          "text": "-c",
+          "type": "Word"
+        },
+        {
+          "text": "0.95",
+          "type": "Word"
+        },
+        {
+          "text": "-G",
+          "type": "Word"
+        },
+        {
+          "text": "0",
+          "type": "Word"
+        },
+        {
+          "text": "-n",
+          "type": "Word"
+        },
+        {
+          "text": "9",
+          "type": "Word"
+        },
+        {
+          "text": "-r",
+          "type": "Word"
+        },
+        {
+          "text": "0",
+          "type": "Word"
+        },
+        {
+          "text": "-g",
+          "type": "Word"
+        },
+        {
+          "text": "1",
+          "type": "Word"
+        },
+        {
+          "text": "-A",
+          "type": "Word"
+        },
+        {
+          "text": "40",
+          "type": "Word"
+        },
+        {
+          "text": "-p",
+          "type": "Word"
+        },
+        {
+          "text": "1",
+          "type": "Word"
+        },
+        {
+          "text": "-M",
+          "type": "Word"
+        },
+        {
+          "text": "0",
+          "type": "Word"
+        },
+        {
+          "text": "-T",
+          "type": "Word"
+        },
+        {
+          "text": "$CORE",
+          "expansion": [
+            {
+              "loc": {
+                "start": 0,
+                "end": 4
+              },
+              "parameter": "CORE",
+              "type": "ParameterExpansion"
+            }
+          ],
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "echo",
+        "expansion": [
+          {
+            "loc": {
+              "start": -8,
+              "end": -4
+            },
+            "parameter": "CORE",
+            "type": "ParameterExpansion"
+          }
+        ],
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "\n\n########################################\n#### Step 2/5: Extracting cd-hit result\n########################################\n",
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Pipeline",
+      "commands": [
+        {
+          "type": "Command",
+          "name": {
+            "text": "cat",
+            "type": "Word"
+          },
+          "suffix": [
+            {
+              "text": "\"$FILE\".cd.clstr",
+              "expansion": [
+                {
+                  "loc": {
+                    "start": 1,
+                    "end": 5
+                  },
+                  "parameter": "FILE",
+                  "type": "ParameterExpansion"
+                }
+              ],
+              "type": "Word"
+            }
+          ]
+        },
+        {
+          "type": "Command",
+          "name": {
+            "text": "awk",
+            "type": "Word"
+          },
+          "suffix": [
+            {
+              "text": "BEGIN{FS=\"[\t:]|\\/|... at |, >\";OFS=\",\"};{$1=$1};{print $0} ",
+              "type": "Word"
+            }
+          ]
+        },
+        {
+          "type": "Command",
+          "name": {
+            "text": "awk",
+            "type": "Word"
+          },
+          "suffix": [
+            {
+              "text": "BEGIN{OFS=\",\";RS=\">Cluster \";FS=\"\n\"};{ for (i=3; i<=NF; i++) print $1,$2,$i }",
+              "type": "Word"
+            }
+          ]
+        },
+        {
+          "type": "Command",
+          "name": {
+            "text": "tr",
+            "type": "Word"
+          },
+          "suffix": [
+            {
+              "text": "-d",
+              "type": "Word"
+            },
+            {
+              "text": "Cluster |...*|%",
+              "type": "Word"
+            }
+          ]
+        },
+        {
+          "type": "Command",
+          "name": {
+            "text": "awk",
+            "type": "Word"
+          },
+          "suffix": [
+            {
+              "text": "BEGIN{FS=\",\"};{print $1, $4, $5, $7, $8, $9, $10, $11, $13}",
+              "type": "Word"
+            },
+            {
+              "type": "Redirect",
+              "op": {
+                "text": ">",
+                "type": "great"
+              },
+              "file": {
+                "text": "\"$FILE\".cd.summary1",
+                "expansion": [
+                  {
+                    "loc": {
+                      "start": 1,
+                      "end": 5
+                    },
+                    "parameter": "FILE",
+                    "type": "ParameterExpansion"
+                  }
+                ],
+                "type": "Word"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "Rscript",
+        "expansion": [
+          {
+            "loc": {
+              "start": -20,
+              "end": -16
+            },
+            "parameter": "FILE",
+            "type": "ParameterExpansion"
+          }
+        ],
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "extract_cdhit2.R",
+          "type": "Word"
+        },
+        {
+          "text": "\"$FILE\".cd.summary1",
+          "expansion": [
+            {
+              "loc": {
+                "start": 1,
+                "end": 5
+              },
+              "parameter": "FILE",
+              "type": "ParameterExpansion"
+            }
+          ],
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "echo",
+        "expansion": [
+          {
+            "loc": {
+              "start": -20,
+              "end": -16
+            },
+            "parameter": "FILE",
+            "type": "ParameterExpansion"
+          }
+        ],
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "\n\n########################################\n### Step 3/5: Running RepeatMasker \n########################################\n",
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "If",
+      "clause": {
+        "type": "CompoundList",
+        "commands": [
+          {
+            "type": "Command",
+            "name": {
+              "text": "[",
+              "type": "Word"
+            },
+            "suffix": [
+              {
+                "text": "\"$4\"",
+                "expansion": [
+                  {
+                    "loc": {
+                      "start": 1,
+                      "end": 2
+                    },
+                    "parameter": 4,
+                    "type": "ParameterExpansion",
+                    "kind": "positional"
+                  }
+                ],
+                "type": "Word"
+              },
+              {
+                "text": "=",
+                "type": "Word"
+              },
+              {
+                "text": "none",
+                "type": "Word"
+              },
+              {
+                "text": "]",
+                "type": "Word"
+              }
+            ]
+          }
+        ]
+      },
+      "then": {
+        "type": "CompoundList",
+        "commands": [
+          {
+            "type": "Command",
+            "name": {
+              "text": "echo",
+              "type": "Word"
+            },
+            "suffix": [
+              {
+                "text": "Custom TE database specified, ignored TE query species ***\n\t",
+                "type": "Word"
+              }
+            ]
+          },
+          {
+            "type": "Command",
+            "name": {
+              "text": "RepeatMasker",
+              "type": "Word"
+            },
+            "suffix": [
+              {
+                "text": "-pa",
+                "type": "Word"
+              },
+              {
+                "text": "$CORE",
+                "expansion": [
+                  {
+                    "loc": {
+                      "start": 0,
+                      "end": 4
+                    },
+                    "parameter": "CORE",
+                    "type": "ParameterExpansion"
+                  }
+                ],
+                "type": "Word"
+              },
+              {
+                "text": "-s",
+                "type": "Word"
+              },
+              {
+                "text": "-lib",
+                "type": "Word"
+              },
+              {
+                "text": "$LIB",
+                "expansion": [
+                  {
+                    "loc": {
+                      "start": 0,
+                      "end": 3
+                    },
+                    "parameter": "LIB",
+                    "type": "ParameterExpansion"
+                  }
+                ],
+                "type": "Word"
+              },
+              {
+                "text": "-dir",
+                "type": "Word"
+              },
+              {
+                "text": ".",
+                "type": "Word"
+              },
+              {
+                "text": "-x",
+                "type": "Word"
+              },
+              {
+                "text": "\"$FILE\".cd",
+                "expansion": [
+                  {
+                    "loc": {
+                      "start": 1,
+                      "end": 5
+                    },
+                    "parameter": "FILE",
+                    "type": "ParameterExpansion"
+                  }
+                ],
+                "type": "Word"
+              },
+              {
+                "type": "Redirect",
+                "op": {
+                  "text": ">",
+                  "type": "great"
+                },
+                "file": {
+                  "text": "./\"$FILE\".cd.RM.progress",
+                  "expansion": [
+                    {
+                      "loc": {
+                        "start": 3,
+                        "end": 7
+                      },
+                      "parameter": "FILE",
+                      "type": "ParameterExpansion"
+                    }
+                  ],
+                  "type": "Word"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "else": {
+        "type": "CompoundList",
+        "commands": [
+          {
+            "type": "Command",
+            "name": {
+              "text": "echo",
+              "type": "Word"
+            },
+            "suffix": [
+              {
+                "text": "\"No custom TE database specified, using the provided TE query species: $4 ***\n\t\"",
+                "expansion": [
+                  {
+                    "loc": {
+                      "start": 71,
+                      "end": 72
+                    },
+                    "parameter": 4,
+                    "type": "ParameterExpansion",
+                    "kind": "positional"
+                  }
+                ],
+                "type": "Word"
+              }
+            ]
+          },
+          {
+            "type": "Command",
+            "name": {
+              "text": "RepeatMasker",
+              "type": "Word"
+            },
+            "suffix": [
+              {
+                "text": "-pa",
+                "type": "Word"
+              },
+              {
+                "text": "$CORE",
+                "expansion": [
+                  {
+                    "loc": {
+                      "start": 0,
+                      "end": 4
+                    },
+                    "parameter": "CORE",
+                    "type": "ParameterExpansion"
+                  }
+                ],
+                "type": "Word"
+              },
+              {
+                "text": "-s",
+                "type": "Word"
+              },
+              {
+                "text": "-species",
+                "type": "Word"
+              },
+              {
+                "text": "$SP",
+                "expansion": [
+                  {
+                    "loc": {
+                      "start": 0,
+                      "end": 2
+                    },
+                    "parameter": "SP",
+                    "type": "ParameterExpansion"
+                  }
+                ],
+                "type": "Word"
+              },
+              {
+                "text": "-dir",
+                "type": "Word"
+              },
+              {
+                "text": ".",
+                "type": "Word"
+              },
+              {
+                "text": "-x",
+                "type": "Word"
+              },
+              {
+                "text": "\"$FILE\".cd",
+                "expansion": [
+                  {
+                    "loc": {
+                      "start": 1,
+                      "end": 5
+                    },
+                    "parameter": "FILE",
+                    "type": "ParameterExpansion"
+                  }
+                ],
+                "type": "Word"
+              },
+              {
+                "type": "Redirect",
+                "op": {
+                  "text": ">",
+                  "type": "great"
+                },
+                "file": {
+                  "text": "./\"$FILE\".cd.RM.progress",
+                  "expansion": [
+                    {
+                      "loc": {
+                        "start": 3,
+                        "end": 7
+                      },
+                      "parameter": "FILE",
+                      "type": "ParameterExpansion"
+                    }
+                  ],
+                  "type": "Word"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "echo",
+        "expansion": [
+          {
+            "loc": {
+              "start": -27,
+              "end": -23
+            },
+            "parameter": "FILE",
+            "type": "ParameterExpansion"
+          }
+        ],
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "\n\n########################################\n###Step 4/5: Running RepeatProteinMask\n########################################\n",
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "RepeatProteinMask",
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "-engine",
+          "type": "Word"
+        },
+        {
+          "text": "ncbi",
+          "type": "Word"
+        },
+        {
+          "text": "\"$FILE\".cd.masked",
+          "expansion": [
+            {
+              "loc": {
+                "start": 1,
+                "end": 5
+              },
+              "parameter": "FILE",
+              "type": "ParameterExpansion"
+            }
+          ],
+          "type": "Word"
+        },
+        {
+          "type": "Redirect",
+          "op": {
+            "text": ">",
+            "type": "great"
+          },
+          "file": {
+            "text": "./\"$FILE\".cd.masked.protM.progress",
+            "expansion": [
+              {
+                "loc": {
+                  "start": 3,
+                  "end": 7
+                },
+                "parameter": "FILE",
+                "type": "ParameterExpansion"
+              }
+            ],
+            "type": "Word"
+          }
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "echo",
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "\n\n########################################\n### Step 5/5: Calculating summary\n########################################\n",
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "Rscript",
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "RAD_TE_summary.R",
+          "type": "Word"
+        },
+        {
+          "text": "\"$FILE\".cd.summary2",
+          "expansion": [
+            {
+              "loc": {
+                "start": 1,
+                "end": 5
+              },
+              "parameter": "FILE",
+              "type": "ParameterExpansion"
+            }
+          ],
+          "type": "Word"
+        },
+        {
+          "text": "\"$FILE\".cd.out",
+          "expansion": [
+            {
+              "loc": {
+                "start": 1,
+                "end": 5
+              },
+              "parameter": "FILE",
+              "type": "ParameterExpansion"
+            }
+          ],
+          "type": "Word"
+        },
+        {
+          "text": "\"$FILE\".cd.masked.annot",
+          "expansion": [
+            {
+              "loc": {
+                "start": 1,
+                "end": 5
+              },
+              "parameter": "FILE",
+              "type": "ParameterExpansion"
+            }
+          ],
+          "type": "Word"
+        }
+      ]
+    },
+    {
+      "type": "Command",
+      "name": {
+        "text": "echo",
+        "expansion": [
+          {
+            "loc": {
+              "start": -25,
+              "end": -21
+            },
+            "parameter": "FILE",
+            "type": "ParameterExpansion"
+          }
+        ],
+        "type": "Word"
+      },
+      "suffix": [
+        {
+          "text": "\n\n########################################\n### DONE\n########################################",
+          "type": "Word"
+        }
+      ]
+    }
+  ]
+}

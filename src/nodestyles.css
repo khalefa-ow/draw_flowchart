@@ -1,0 +1,123 @@
+.process-node {
+  border-style: solid;
+  padding: 10px;
+  border-radius: 3px;
+  width: auto;
+
+  font-size: 12px;
+  color: #222;
+  text-align: center;
+  border-width: 2px;
+  border-color: #09028b;
+}
+
+.process-node__handle {
+  pointer-events: none;
+}
+
+.process-node__handle-bottom {
+  left: 50%;
+  bottom: -4px;
+  transform: translate(-50%, 0);
+  color: yellow;
+}
+
+.process-node__handle-top {
+  left: 50%;
+  top: -4px;
+  color: red;
+}
+
+.inout-node {
+  border-style: solid;
+  padding: 10px;
+  border-radius: 3px;
+  width: 50px;
+
+  font-size: 12px;
+  color: #222;
+  text-align: center;
+  border-width: 2px;
+  border-color: #09028b;
+  transform: skew(-20deg);
+}
+
+.if-node {
+  border-style: solid;
+  padding: 10px;
+  border-radius: 5px;
+  width: 50px;
+
+  font-size: 12px;
+  color: #222;
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #1a192b;
+}
+
+.diamond-node {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #1a192b;
+  transform: rotate(45deg);
+}
+.diamond-node-label {
+  transform: rotate(-45deg);
+}
+
+.endif-node {
+  width: 0px;
+  height: 0px;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 2px;
+
+  border-color: blue;
+  padding: 10px 10px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.handlestyle {
+  width: 0px;
+  height: 0px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
+
+  border-color: blue;
+  padding: 2px 2px;
+  background-color: red;
+}
+
+.elseStyle {
+  color: blue;
+  position: absolute;
+  top: +1px;
+  left: -30px;
+}
+
+.inout-node .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.inout-node:hover .tooltiptext {
+  visibility: visible;
+}
+
+.thenStyle {
+  color: blue;
+  position: absolute;
+  top: +1px;
+  right: -30px;
+}
